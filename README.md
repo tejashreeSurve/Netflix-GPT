@@ -65,3 +65,5 @@
 - Create Redux store with userSlice
 - Implemented sign-out
 - Update profile API call
+- Bug Fix- navigation to /browses page without login & back to browses if hit to /    login after login
+- TMDB data base

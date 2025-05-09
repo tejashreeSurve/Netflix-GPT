@@ -8,9 +8,9 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import { addUser } from "../utils/userSlice";
+import { addUser } from "../slices/userSlice";
+import { NETFLIX_BG } from "../utils/constant";
 
 export const Login = () => {
   const [signUp, setSignUp] = useState(false);
@@ -20,8 +20,6 @@ export const Login = () => {
   const passwordRef = useRef<HTMLInputElement>(null);
   const [onSubmit, setOnSubmit] = useState(false);
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -57,6 +55,7 @@ export const Login = () => {
           })
           .catch((error) => {
             setError(error.message);
+            setOnSubmit(false);
           });
       } else {
         signInWithEmailAndPassword(auth, email, password)
@@ -66,7 +65,6 @@ export const Login = () => {
             dispatch(
               addUser({ displayName, email, photoURL, phoneNumber, uid })
             );
-            navigate("/browses");
             setOnSubmit(false);
           })
           .catch((error) => {
@@ -74,8 +72,6 @@ export const Login = () => {
               setError("Incorrect email or password. Please try again. ");
             setOnSubmit(false);
           });
-
-        // sign -in logic
       }
     }
   };
@@ -86,7 +82,7 @@ export const Login = () => {
       <div className="relative w-full h-screen">
         <img
           className="absolute  inset-0 w-full h-full object-cover brightness-70"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/f6e7f6df-6973-46ef-b98f-12560d2b3c69/web/IN-en-20250317-TRIFECTA-perspective_26f87873-6014-460d-a6fb-1d96d85ffe5f_small.jpg"
+          src={NETFLIX_BG}
           alt="netflix-bg-image"
         />
         <form
