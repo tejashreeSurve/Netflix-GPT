@@ -1,13 +1,15 @@
+import { useSelector } from "react-redux";
 import useGetMovieVideos from "../../hooks/useGetMovieVideos";
 
 export function VideoTrailer({ movieId }) {
-  const { movieTrailer } = useGetMovieVideos(movieId);
-  if (!movieTrailer) return null;
+  useGetMovieVideos(movieId);
+  const trailerVideo = useSelector((state) => state?.movies.movieTrailerVideo);
+  if (!trailerVideo) return null;
 
   return (
     <iframe
-      className="aspect-video w-full block"
-      src={`https://www.youtube.com/embed/${movieTrailer.key}?autoplay=1&mute=1&modestbranding=1`}
+      className="aspect-video w-screen block"
+      src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1&modestbranding=1`}
       allow="autoplay; encrypted-media"
     ></iframe>
   );

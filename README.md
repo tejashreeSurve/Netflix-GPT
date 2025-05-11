@@ -66,4 +66,14 @@
 - Implemented sign-out
 - Update profile API call
 - Bug Fix- navigation to /browses page without login & back to browses if hit to /    login after login
-- TMDB data base
+- TMDB database
+- Register TMDB API's and create an app & access token
+- Get Data from TMDB 'now playing movies
+- Custom hook for now playing movies
+- Create moviesSlices
+- Update store with movie data
+- Planning for MainConatiner & secondary conatiner
+- Fetch data from tariler vidoe API
+- update store with trailer video
+- Embedded the youtube video and make it autoplay and mute
+- Tailwind classes to make conatiner look awsome 
